@@ -16,6 +16,20 @@ export default {
   // https://css-tricks.com/quick-localstorage-usage-in-vue/
   // https://www.section.io/engineering-education/vue2-crud-app-with-localstorage/
 
+  head() {
+    return {
+      title: "Ray's Todo App",
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: "description",
+          name: "Ray's Todo App",
+          content: "A simple todo app created using Nuxt.js, Vuex and Tailwind CSS.",
+        },
+      ],
+    };
+  },
+
   watch: {
     tasks: {
       handler() {
