@@ -15,6 +15,7 @@ export default {
   // https://www.mikestreety.co.uk/blog/vue-js-using-localstorage-with-the-vuex-store/
   // https://css-tricks.com/quick-localstorage-usage-in-vue/
   // https://www.section.io/engineering-education/vue2-crud-app-with-localstorage/
+  // https://medium.com/js-dojo/how-to-permanently-save-data-with-vuex-localstorage-in-your-vue-app-f1d5c140db69
 
   head() {
     return {
