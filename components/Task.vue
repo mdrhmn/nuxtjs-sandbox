@@ -44,7 +44,6 @@
       />
       <div class="flex-grow pr-4">
         {{ task.content }}
-        {{ task.status }}
       </div>
     </div>
     <button
