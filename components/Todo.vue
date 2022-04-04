@@ -75,9 +75,7 @@
           </svg>
         </button>
       </div>
-      <!-- <div>
-        {{ $store.state.tasks }}
-      </div> -->
+
       <Task v-for="(task, i) in $store.state.tasks" :key="i" :task="task" />
     </div>
   </div>

@@ -40,18 +40,39 @@ export const mutations = {
         // ]
         // Add new task at the end
         state.tasks.push({ content: task, status: false })
+
+        // Store the state object as a JSON string
+        localStorage.setItem('store', JSON.stringify(state));
+
         // // Add new task at the start
         // state.tasks.unshift({content: task, status: false})
+    },
+
+    INITIALISE_STORE(state) {
+        // Check if the ID exists
+        if (localStorage.getItem('store')) {
+
+            // Replace the state object with the stored item
+            this.replaceState(
+                Object.assign(state, JSON.parse(localStorage.getItem('store')))
+            );
+        }
     },
 
     // Mutation to remove task
     REMOVE_TASK(state, task) {
         state.tasks.splice(state.tasks.indexOf(task), 1);
+
+        // Store the state object as a JSON string
+        localStorage.setItem('store', JSON.stringify(state));
     },
 
     // Mutation to toggle task status
     TOGGLE_TASK(state, task) {
         task.status = !task.status;
+
+        // Store the state object as a JSON string
+        localStorage.setItem('store', JSON.stringify(state));
     },
 }
 

@@ -12,6 +12,7 @@
       "
     >
       <input
+        v-if="task.status"
         class="
           flex-none
           focus:ring-blue-500
@@ -23,10 +24,27 @@
           rounded
         "
         type="checkbox"
-		v-model="toggleStatus"
+        v-model="toggleStatus"
+        checked
+      />
+      <input
+        v-else
+        class="
+          flex-none
+          focus:ring-blue-500
+          h-4
+          w-4
+          ml-4
+          text-blue-500
+          border-gray-300
+          rounded
+        "
+        type="checkbox"
+        v-model="toggleStatus"
       />
       <div class="flex-grow pr-4">
         {{ task.content }}
+        {{ task.status }}
       </div>
     </div>
     <button
