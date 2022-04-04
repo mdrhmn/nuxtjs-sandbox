@@ -1,4 +1,4 @@
-# nuxtjs-sandbox
+# nuxjs-todo-app
 
 ## Build Setup
 

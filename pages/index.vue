@@ -1,9 +1,11 @@
 <template>
-  <Tutorial/>
+  <main>
+    <Todo />
+  </main>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
-}
+  name: "IndexPage",
+};
 </script>
