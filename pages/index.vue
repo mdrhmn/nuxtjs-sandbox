@@ -31,16 +31,16 @@ export default {
     };
   },
 
-  watch: {
-    tasks: {
-      handler() {
-        localStorage.setItem("tasks", JSON.stringify(this.$store.state.tasks));
-      },
-      deep: true,
-    },
-  },
+  // watch: {
+  //   tasks: {
+  //     handler() {
+  //       localStorage.setItem("tasks", JSON.stringify(this.$store.state.tasks));
+  //     },
+  //     deep: true,
+  //   },
+  // },
 
-  mounted() {
+  beforeCreate() {
     if (!process.client) return;
     const savedData = localStorage.getItem("tasks");
 

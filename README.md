@@ -9,7 +9,7 @@ This is a mini project and repository for my own self-learning on Nuxt.js and Vu
 ## Technology Stacks
 
 1. Nuxt.js v2
-    - Vuex
+   - Vuex
 2. Tailwind CSS
 
 ---
@@ -61,8 +61,8 @@ export default {
         autoprefixer: {},
       },
     },
-  }
-}
+  },
+};
 ```
 
 After that, add the paths to all of your template files in your `tailwind.config.js file`.
@@ -85,6 +85,7 @@ plugins: [require("@tailwindcss/forms")],
 ### Creating Components
 
 In Nuxt.js, we have 3 important fixed directories related to views which are:
+
 1. `components`
 2. `layout`
 3. `pages`
@@ -94,6 +95,7 @@ In Nuxt.js, we have 3 important fixed directories related to views which are:
 For this project, we did not use `layout`. But files inside `pages` represent – as the name states – each page inside your app. **Each page may consist of multiple components**, which are located inside the `components` directory.
 
 This app consists of 2 components:
+
 1. `Todo.vue`
 2. `Task.vue`
 
@@ -120,13 +122,13 @@ The following are the four building blocks of a Vuex module:
 ```js
 // store/index.js
 
-export const state = () => ({})
+export const state = () => ({});
 
-export const mutations = {}
+export const mutations = {};
 
-export const actions = {}
+export const actions = {};
 
-export const getters = {}
+export const getters = {};
 ```
 
 The following slides from Scrimba's The Vue.js Bootcamp provides a good analogy on how Vuex terminology compares with Vue.js' basic terminology:
@@ -140,16 +142,15 @@ Since state represents data, the data in our app would be the list of todos a.k.
 // store/index.js
 
 export const state = () => ({
-    tasks: []
-})
-
+  tasks: [],
+});
 ```
 
 The YouTube tutorial that I referred to used an **all-caps naming convention** for all Vuex functions, although **camelCase is used in Nuxt's official documentation**. For this app, I'm sticking with the former.
 
 In this app, a `task` object consists of 2 keys: `content` which is a string that represents the task themselves and `status` which is a boolean (default is `false`) and represents the task's completion status.
 
-Next is mutations which are usually **CUD operations** involved in the app. This includes the add and remove tasks as well as the ability to toggle each task's completion status. 
+Next is mutations which are usually **CUD operations** involved in the app. This includes the add and remove tasks as well as the ability to toggle each task's completion status.
 
 ```js
 // store/index.js
@@ -162,6 +163,7 @@ ADD_TASK(state, task) {
 
 },
 ```
+
 ```js
 // store/index.js
 
@@ -174,6 +176,7 @@ REMOVE_TASK(state, task) {
 
 },
 ```
+
 ```js
 // store/index.js
 
@@ -206,7 +209,7 @@ Remember that in components, `data` is a function and therefore needs to return 
   },
 ```
 
-Next, we need to declare a method for adding the task, which will invoke the Vuex's `ADD_TASK` mutation. We first need to surround it in an if-statement (can also use try-catch) that checks whether `newTask` is empty. Only when it is not that we invoke the mutation and set `newTask` back to an empty string.
+Next, we need to declare a method for adding the task, which will invoke the Vuex's `ADD_TASK` mutation using **`this.$store.commit`**. We first need to surround it in an if-statement (can also use try-catch) that checks whether `newTask` is empty. Only when it is not that we invoke the mutation using **`this.$store.commit`** and set `newTask` back to an empty string.
 
 ```js
 // components/Todo.vue
@@ -240,12 +243,12 @@ Alternatively, the submit button must also have a `click` event in case the user
 // components/Todo.vue
 
 <button
-    // ... 
+    // ...
     @click="addTask"
 >
 ```
 
-Finally, we need to include `Task.vue` component inside `Todo.vue` to display the tasks. Since there can obviously be more than 1 task and the tasks are stored inside a list/array, we need to use the expanded `v-for` directive, with the value and key specified to iterate through the `tasks` state. This can be accessed using `$store.state` command. 
+Finally, we need to include `Task.vue` component inside `Todo.vue` to display the tasks. Since there can obviously be more than 1 task and the tasks are stored inside a list/array, we need to use the expanded `v-for` directive, with the value and key specified to iterate through the `tasks` state. This can be accessed using `$store.state` command.
 
 ```js
 // components/Todo.vue
@@ -257,9 +260,9 @@ Finally, we need to include `Task.vue` component inside `Todo.vue` to display th
 
 ### Configuring `Task.vue`
 
-This component is responsible for displaying the task and their respective information (`content`, `status`). 
+This component is responsible for displaying the task and their respective information (`content`, `status`).
 
-Since this component is nested inside the `Task.vue` component, a **component-to-component communication** requires the uses of **`props`**. `Task.vue` will accept a prop called `task` for it to display the necessary information. 
+Since this component is nested inside the `Task.vue` component, a **component-to-component communication** requires the uses of **`props`**. `Task.vue` will accept a prop called `task` for it to display the necessary information.
 
 ```js
 // components/Task.vue
@@ -267,9 +270,9 @@ Since this component is nested inside the `Task.vue` component, a **component-to
 props: ["task"],
 ```
 
-In this component, we will utilise both methods and computed properties. 
+In this component, we will utilise both methods and computed properties.
 
-`removeTask` method is declared here for invoking Vuex `REMOVE_TASK` mutation since the delete functionality is located in this component instead of its parent (`Todo.vue`). 
+`removeTask` method is declared here for invoking Vuex `REMOVE_TASK` mutation since the delete functionality is located in this component instead of its parent (`Todo.vue`).
 
 ```js
 // components/Task.vue
@@ -281,7 +284,7 @@ In this component, we will utilise both methods and computed properties.
   },
 ```
 
-However, we have to use a technique known as [**two-way computed property with a setter**](https://vuex.vuejs.org/guide/forms.html) for completion status toggling functionality to be reactive. The setter will invoke the `TOGGLE_TASK` mutation while the getter simply retrieves the relevant task.
+However, we have to use a technique known as [**two-way computed property with a setter**](https://vuex.vuejs.org/guide/forms.html) for completion status toggling functionality to be reactive. The setter will invoke the `TOGGLE_TASK` mutation via **`this.$store.commit`** while the getter simply retrieves the relevant task.
 
 ```js
 // components/Task.vue
@@ -308,6 +311,7 @@ Lastly, we need to update the template with the necessary directives. I used a `
     @click="removeTask"
   >
 ```
+
 ```js
 // components/Task.vue
 
@@ -330,4 +334,93 @@ Lastly, we need to update the template with the necessary directives. I used a `
 
 ### Additional Feature: Persistent Storage
 
-If you reached this point, the app should be fully working with a caveat: All the tasks will be gone upon refresh
+If you reached this point, the app should be fully working with a caveat: **All the tasks will be gone upon refresh** which makes the app rather useless.
+
+To ensure that your data will persist even after refresh, we need to use **`localStorage`**.
+
+Firstly, we need to use `localStorage`'s `setItem` method to save the state of our store in each mutation to ensure that any changes made will persist in `localStorage`.
+
+```js
+// store/index.js
+
+export const mutations = {
+  // Nuxt.js convention to use all-caps for mutation name
+  // Mutation to add new task
+  ADD_TASK(state, task) {
+    // Add new task at the end
+    state.tasks.push({ content: task, status: false });
+
+    // Store the state object as a JSON string
+    localStorage.setItem("store", JSON.stringify(state));
+  },
+
+  // Mutation to remove task
+  REMOVE_TASK(state, task) {
+    state.tasks.splice(state.tasks.indexOf(task), 1);
+
+    // Store the state object as a JSON string
+    localStorage.setItem("store", JSON.stringify(state));
+  },
+
+  // Mutation to toggle task status
+  TOGGLE_TASK(state, task) {
+    task.status = !task.status;
+
+    // Store the state object as a JSON string
+    localStorage.setItem("store", JSON.stringify(state));
+  },
+};
+```
+
+The next step is to create a new mutation called `INITIALISE_STORE` (it can be other names). This is because once a user hits refresh, the state of the tasks in the store will revert. With our data now stored with every update, we need to retrieve the data on page load. When the user re-accesses the app, we need to replace the existing, empty store with the contents of our storage.
+
+Inside this mutation, check if the `localStorage` item exists. We will replace the current state if it does exist by using Vuex's `replaceState` method.
+
+```js
+// store/index.js
+
+  INITIALISE_STORE(state) {
+      // Check if the ID exists
+      if (localStorage.getItem('store')) {
+
+          // Replace the state object with the stored item
+          this.replaceState(
+              Object.assign(state, JSON.parse(localStorage.getItem('store')))
+          );
+      }
+  },
+```
+
+The last stage is to call this mutation when the Vue app is created. We want this to happen at the earliest point which, based on the Vue lifecycle hooks is during the `beforeCreate()` method.
+
+```js
+// pages/index.vue
+
+  beforeCreate() {
+    if (!process.client) return;
+    const savedData = localStorage.getItem("tasks");
+
+    if (savedData) {
+      this.$store.commit("INITIALISE_STORE");
+    }
+  },
+```
+
+## References
+
+### Todo App Tutorial
+
+1. [YouTube - Build a TODO List App in NUXT JS using VUEX](https://www.youtube.com/watch?v=a02jXHb3_Rs)
+2. [TylerPottsDev/yt-nuxt-task-list](https://github.com/TylerPottsDev/yt-nuxt-task-list)
+
+### Nuxt and Vuex
+
+1. [Working With Nuxt and Vuex](https://langvad.dev/blog/working-with-nuxt-and-vuex/)
+
+### Vuex and `localStorage`
+
+1. [Vue: Using localStorage with Vuex store](https://www.mikestreety.co.uk/blog/vue-js-using-localstorage-with-the-vuex-store/)
+2. [How to permanently save data with Vuex & localStorage in your Vue app](https://medium.com/js-dojo/how-to-permanently-save-data-with-vuex-localstorage-in-your-vue-app-f1d5c140db69)
+3. [How to Make a CRUD app with Local Storage using Vue 2](https://www.section.io/engineering-education/vue2-crud-app-with-localstorage/
+)
+4. [How do I access localStorage in store of NuxtJs?](https://stackoverflow.com/questions/62789608/how-do-i-access-localstorage-in-store-of-nuxtjs)
