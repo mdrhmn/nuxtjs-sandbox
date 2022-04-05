@@ -186,6 +186,8 @@ TOGGLE_TASK(state, task) {
 },
 ```
 
+---
+
 ### Configuring `Todo.vue`
 
 Now that the Vuex store has been configured, we need to go back to `Todo.vue` and configure it next to refer to the Vuex store.
@@ -250,3 +252,82 @@ Finally, we need to include `Task.vue` component inside `Todo.vue` to display th
 
 <Task v-for="(task, i) in $store.state.tasks" :key="i" :task="task" />
 ```
+
+---
+
+### Configuring `Task.vue`
+
+This component is responsible for displaying the task and their respective information (`content`, `status`). 
+
+Since this component is nested inside the `Task.vue` component, a **component-to-component communication** requires the uses of **`props`**. `Task.vue` will accept a prop called `task` for it to display the necessary information. 
+
+```js
+// components/Task.vue
+
+props: ["task"],
+```
+
+In this component, we will utilise both methods and computed properties. 
+
+`removeTask` method is declared here for invoking Vuex `REMOVE_TASK` mutation since the delete functionality is located in this component instead of its parent (`Todo.vue`). 
+
+```js
+// components/Task.vue
+
+  methods: {
+    removeTask() {
+      this.$store.commit("REMOVE_TASK", this.task);
+    },
+  },
+```
+
+However, we have to use a technique known as [**two-way computed property with a setter**](https://vuex.vuejs.org/guide/forms.html) for completion status toggling functionality to be reactive. The setter will invoke the `TOGGLE_TASK` mutation while the getter simply retrieves the relevant task.
+
+```js
+// components/Task.vue
+
+  computed: {
+    toggleStatus: {
+      get: function () {
+        return this.$store.state.tasks[this.task];
+      },
+      set: function (val) {
+        this.$store.commit("TOGGLE_TASK", this.task);
+      },
+    },
+  },
+```
+
+Lastly, we need to update the template with the necessary directives. I used a `v-if` and `v-else` directives for the checkbox input to display it as checked/unchecked depending on the `task.status`. The checkbox input is also bounded to the `toggleStatus` computed property via the `v-model` directive, while the delete button contains the `click` event set to the `removeTask` method.
+
+```js
+// components/Task.vue
+
+  <button
+    // ...
+    @click="removeTask"
+  >
+```
+```js
+// components/Task.vue
+
+  <input
+    v-if="task.status"
+    // ...
+    type="checkbox"
+    v-model="toggleStatus"
+    checked
+  />
+  <input
+    v-else
+    // ...
+    type="checkbox"
+    v-model="toggleStatus"
+  />
+```
+
+---
+
+### Additional Feature: Persistent Storage
+
+If you reached this point, the app should be fully working with a caveat: All the tasks will be gone upon refresh
