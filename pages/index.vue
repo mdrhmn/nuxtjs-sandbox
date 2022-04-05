@@ -1,6 +1,8 @@
 <template>
   <main>
-    <Todo />
+    <ClientOnly>
+      <Todo />
+    </ClientOnly>
   </main>
 </template>
 
@@ -25,7 +27,8 @@ export default {
         {
           hid: "description",
           name: "Ray's Todo App",
-          content: "A simple todo app created using Nuxt.js, Vuex and Tailwind CSS.",
+          content:
+            "A simple todo app created using Nuxt.js, Vuex and Tailwind CSS.",
         },
       ],
     };
