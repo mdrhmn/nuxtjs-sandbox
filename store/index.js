@@ -76,13 +76,5 @@ export const mutations = {
     },
 }
 
-import Cookie from 'cookie'
-
-export const actions = {
-    nuxtServerInit({ dispatch }, { req }) {
-        const cookies = Cookie.parse(req.headers.cookie || '')
-        const token = cookies['token'] || ''
-        if (token) return dispatch('', token)
-    }
-}
+export const actions = {}
 

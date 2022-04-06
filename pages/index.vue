@@ -46,6 +46,7 @@ export default {
   beforeCreate() {
     if (!process.client) return;
     const savedData = localStorage.getItem("tasks");
+    console.log(savedData)
 
     if (savedData) {
       this.$store.commit("INITIALISE_STORE");
