@@ -43,7 +43,9 @@
         v-model="toggleStatus"
       />
       <div class="flex-grow pr-4">
-        {{ task.content }}
+        <span :class="task.status ? 'line-through text-gray-500' : ''">
+          {{ task.content }}
+        </span>
       </div>
     </div>
     <button
