@@ -398,7 +398,7 @@ The last stage is to call this mutation when the Vue app is created. We want thi
 
   beforeCreate() {
     if (!process.client) return;
-    const savedData = localStorage.getItem("tasks");
+    const savedData = localStorage.getItem("store");
 
     if (savedData) {
       this.$store.commit("INITIALISE_STORE");

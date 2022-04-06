@@ -34,15 +34,6 @@ export default {
     };
   },
 
-  // watch: {
-  //   tasks: {
-  //     handler() {
-  //       localStorage.setItem("tasks", JSON.stringify(this.$store.state.tasks));
-  //     },
-  //     deep: true,
-  //   },
-  // },
-
   beforeCreate() {
     if (!process.client) return;
     const savedData = localStorage.getItem("store");
