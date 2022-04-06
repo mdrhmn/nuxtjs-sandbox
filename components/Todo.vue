@@ -57,6 +57,7 @@
             px-4
             rounded
           "
+          aria-label="Add task"
           @click="addTask"
         >
           <svg
@@ -84,26 +85,26 @@
 </template>
 
 <style>
-  /* Enter and leave animations can use different */
-  /* durations and timing functions.              */
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: all 0.5s ease;
-  }
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
 
-  .fade-enter,
-  .fade-leave-to {
-    transform: translateY(30px);
-    opacity: 0;
-  }
+.fade-enter,
+.fade-leave-to {
+  transform: translateY(30px);
+  opacity: 0;
+}
 
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-    transform: translateX(
-      30px
-    ); /* -30px for animation from top, 30px for animation from bottom */
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(
+    30px
+  ); /* -30px for animation from top, 30px for animation from bottom */
+}
 </style>
 
 <script>

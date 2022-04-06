@@ -59,6 +59,7 @@
         px-4
         rounded
       "
+      aria-label="Remove task"
       @click="removeTask"
     >
       <svg
