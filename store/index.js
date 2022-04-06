@@ -82,7 +82,7 @@ export const actions = {
     nuxtServerInit({ dispatch }, { req }) {
         const cookies = Cookie.parse(req.headers.cookie || '')
         const token = cookies['token'] || ''
-        if (token) return dispatch('user/load', token)
+        if (token) return dispatch('', token)
     }
 }
 
