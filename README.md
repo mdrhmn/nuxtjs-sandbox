@@ -416,6 +416,7 @@ The last stage is to call this mutation when the Vue app is created. We want thi
 ### Nuxt and Vuex
 
 1. [Working With Nuxt and Vuex](https://langvad.dev/blog/working-with-nuxt-and-vuex/)
+2. [Creating Server-side Rendered Vue.js Apps Using Nuxt.js](https://www.toptal.com/vue-js/server-side-rendered-vue-js-using-nuxt-js)
 
 ### Vuex and `localStorage`
 
@@ -424,3 +425,7 @@ The last stage is to call this mutation when the Vue app is created. We want thi
 3. [How to Make a CRUD app with Local Storage using Vue 2](https://www.section.io/engineering-education/vue2-crud-app-with-localstorage/
 )
 4. [How do I access localStorage in store of NuxtJs?](https://stackoverflow.com/questions/62789608/how-do-i-access-localstorage-in-store-of-nuxtjs)
+
+### `localStorage`
+
+1. [Client-side storage](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage)
