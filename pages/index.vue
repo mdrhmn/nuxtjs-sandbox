@@ -19,20 +19,20 @@ export default {
   // https://www.section.io/engineering-education/vue2-crud-app-with-localstorage/
   // https://medium.com/js-dojo/how-to-permanently-save-data-with-vuex-localstorage-in-your-vue-app-f1d5c140db69
 
-  head() {
-    return {
-      title: "Ray's Todo App",
-      meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: "description",
-          name: "Ray's Todo App",
-          content:
-            "A simple todo app created using Nuxt.js, Vuex and Tailwind CSS.",
-        },
-      ],
-    };
-  },
+  // head() {
+  //   return {
+  //     title: "Ray's Todo App",
+  //     meta: [
+  //       // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+  //       {
+  //         hid: "description",
+  //         name: "Ray's Todo App",
+  //         content:
+  //           "A simple todo app created using Nuxt.js, Vuex and Tailwind CSS.",
+  //       },
+  //     ],
+  //   };
+  // },
 
   beforeCreate() {
     if (!process.client) return;
